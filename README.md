@@ -1,22 +1,5 @@
 #Painted Stone
-
-##Development
-Install Forge as usual, and setup your IDE as with any other Forge project.
-
-##Compile from Source
-Run [Apache Ant](http://ant.apache.org/bindownload.cgi) in the repository root: `ant package`
-
-##Issue reporting
-Please include the following:
-
-* Minecraft version
-* Painted Stone version
-* Forge version/build
-* Versions of any mods potentially related to the issue 
-* Any relevant screenshots are greatly appreciated.
-* For crashes:
-	* Steps to reproduce
-	* ForgeModLoader-client-0.log (the FML log) from the root folder of the client
+Smear a bit of dye on rocks to give them color!
 
 ##Licenses
 Most code is licensed under the [MIT License](http://opensource.org/licenses/MIT).
