@@ -1,4 +1,23 @@
 
+itemGroup.paintedstone=Gefärbter Stein
+
+tile.stone.raw.white.name=Heller Stein
+tile.stone.raw.orange.name=Gebräunter Stein
+tile.stone.raw.magenta.name=Fliederfarbener Stein
+tile.stone.raw.lightblue.name=MeeresfarbenerStein
+tile.stone.raw.yellow.name=Sonniger Stein
+tile.stone.raw.lime.name=Minzener Stein
+tile.stone.raw.pink.name=Rosa Stein
+tile.stone.raw.gray.name=Dunkler Stein
+tile.stone.raw.silver.name=Leicht getönter Stein
+tile.stone.raw.aqua.name=Aquastein
+tile.stone.raw.purple.name=Violetter Stein
+tile.stone.raw.blue.name=Ozeanstein
+tile.stone.raw.brown.name=Irdener Stein
+tile.stone.raw.green.name=Smaragdener Stein
+tile.stone.raw.red.name=Abendrotstein
+tile.stone.raw.black.name=Rußiger Stein
+
 tile.stone.cobble.white.name=Heller Pflasterstein
 tile.stone.cobble.orange.name=Gebräunter Pflasterstein
 tile.stone.cobble.magenta.name=Fliederfarbener Pflasterstein
@@ -134,3 +153,6 @@ tile.stone.chiseled.brown.name=Gemeißelter Irdener Steinziegel
 tile.stone.chiseled.green.name=Gemeißelter Smaragdener Steinziegel
 tile.stone.chiseled.red.name=Gemeißelter Abendrotsteinziegel
 tile.stone.chiseled.black.name=Gemeißelter Rußiger Steinziegel
+
+item.bastion.spawnEgg.name=Erschaffe
+item.bastion.basket.name=Korb
