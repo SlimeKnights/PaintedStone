@@ -4,7 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -47,8 +49,17 @@ public class PaintedStone
         GameRegistry.registerBlock(coloredStoneFancyBrick, PaintedStoneItem.class, "paintedstone.fancy", "PaintedStone");
         coloredStoneSquareBrick = new PaintedStoneBlock(PHPaint.coloredStoneSquareBrick, Material.rock, 1.5f, "stone_square", "stone.chiseled").setUnlocalizedName("paintedstone.chiseled");
         GameRegistry.registerBlock(coloredStoneSquareBrick, PaintedStoneItem.class, "paintedstone.chiseled", "PaintedStone");
+
+        for (int i = 0; i < 16; i++)
+        {
+            FurnaceRecipes.smelting().addSmelting(coloredCobble.blockID, i, new ItemStack(coloredStone, 1, i), 0.2F);
+            int oreID = OreDictionary.getOreID("stone");
+            OreDictionary.registerOre(oreID, new ItemStack(coloredStone, 1, i));
+            oreID = OreDictionary.getOreID("cobblestone");
+            OreDictionary.registerOre(oreID, new ItemStack(coloredCobble, 1, i));
+        }
     }
-    
+
     @ForgeSubscribe
     public void playerInteract (PlayerInteractEvent event)
     {
@@ -136,12 +147,12 @@ public class PaintedStone
                         if (meta == 14)
                         {
                             changed = true;
-                            world.setBlock(x + xPos, y + yPos, z + zPos, coloredStoneFancyBrick.blockID, inputMeta, 3);                            
+                            world.setBlock(x + xPos, y + yPos, z + zPos, coloredStoneFancyBrick.blockID, inputMeta, 3);
                         }
                         else if (meta == 15)
                         {
                             changed = true;
-                            world.setBlock(x + xPos, y + yPos, z + zPos, coloredStoneRoad.blockID, inputMeta, 3);                            
+                            world.setBlock(x + xPos, y + yPos, z + zPos, coloredStoneRoad.blockID, inputMeta, 3);
                         }
                     }
                     //Road

@@ -12,6 +12,6 @@ public class TabPaintedStone extends CreativeTabs
 
     public ItemStack getIconItemStack ()
     {
-        return new ItemStack(PaintedStone.coloredStone);
+        return new ItemStack(PaintedStone.coloredStone, 1, 13);
     }
 }
