@@ -1,0 +1,20 @@
+[
+{
+  "modid": "PaintedStone",
+  "name": "Painted Stone",
+  "description": "Smear a bit of dye on rocks to give them color!",
+  "version": "Arrow",
+  "mcversion": "1.6.X",
+  "url": "insert.url.here",
+  "updateUrl": "",
+  "authors": [
+    "mDiyo"
+  ],
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
