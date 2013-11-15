@@ -13,9 +13,12 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import tconstruct.common.TContent;
+import tconstruct.library.TConstructRegistry;
+import tconstruct.library.crafting.Detailing;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -53,12 +56,32 @@ public class PaintedStone
         for (int i = 0; i < 16; i++)
         {
             FurnaceRecipes.smelting().addSmelting(coloredCobble.blockID, i, new ItemStack(coloredStone, 1, i), 0.2F);
+            GameRegistry.addRecipe(new ItemStack(coloredStoneBrick, 4, i),  "##", "##", '#', new ItemStack(coloredStone, 1, i));
             int oreID = OreDictionary.getOreID("stone");
             OreDictionary.registerOre(oreID, new ItemStack(coloredStone, 1, i));
             oreID = OreDictionary.getOreID("cobblestone");
             OreDictionary.registerOre(oreID, new ItemStack(coloredCobble, 1, i));
         }
     }
+    
+    @EventHandler
+    public void init (FMLInitializationEvent event)
+    {
+        if (TConstruct)
+        {
+            Detailing chiseling = TConstructRegistry.getChiselDetailing();
+            for (int i = 0; i < 16; i++)
+            {
+                chiseling.addDetailing(coloredStone, i, coloredStoneBrick, i, TContent.chisel);
+                chiseling.addDetailing(coloredStoneBrick, i, coloredStoneRoad, i, TContent.chisel);
+                chiseling.addDetailing(coloredStoneRoad, i, coloredStoneFancyBrick, i, TContent.chisel);
+                chiseling.addDetailing(coloredStoneFancyBrick, i, coloredStoneSquareBrick, i, TContent.chisel);
+            }
+        }
+    }
+    
+    public static final String[] dyeTypes = new String[] { "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red",
+    "black" };
 
     @ForgeSubscribe
     public void playerInteract (PlayerInteractEvent event)
@@ -74,7 +97,7 @@ public class PaintedStone
                 type = type.toLowerCase();
                 for (int i = 0; i < 16; i++)
                 {
-                    if (type.equals("dye" + PaintedStoneBlock.colorNames[i]))
+                    if (type.equals("dye" + dyeTypes[i]))
                     {
                         if (colorStoneBlocks(player.worldObj, event.x, event.y, event.z, i))
                         {
@@ -104,6 +127,7 @@ public class PaintedStone
     {
         boolean changed = false;
         int range = 1;
+        System.out.println("Input: "+inputMeta);
         for (int xPos = -range; xPos <= range; xPos++)
         {
             for (int yPos = -range; yPos <= range; yPos++)

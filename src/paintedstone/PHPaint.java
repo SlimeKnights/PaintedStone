@@ -47,6 +47,8 @@ public class PHPaint
         coloredStoneRoad = config.getBlock("Colored Stone Road", 2909).getInt(2909);
         coloredStoneFancyBrick = config.getBlock("Colored Fancy Stone Brick", 2910).getInt(2910);
         coloredStoneSquareBrick = config.getBlock("Colored Chiseled Stone Brick", 2911).getInt(2911);
+        
+        config.save();
     }
 
     public static int coloredStone;
