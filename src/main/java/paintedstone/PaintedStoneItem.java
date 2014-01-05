@@ -1,13 +1,14 @@
 package paintedstone;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class PaintedStoneItem extends ItemBlock
 {
-    public PaintedStoneItem(int id)
+    public PaintedStoneItem(Block b)
     {
-        super(id);
+        super(b);
         setMaxDamage(0);
         setHasSubtypes(true);
     }

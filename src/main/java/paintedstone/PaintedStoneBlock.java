@@ -5,10 +5,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -18,47 +19,52 @@ public class PaintedStoneBlock extends Block
             "black" };
     public final String textureName;
     public final String localName;
-    public Icon[] icons;
-    int dropID;
+    public IIcon[] icons;
+    Block dropBlock;
 
-    public PaintedStoneBlock(int ID, Material material, float hardness, String texture, String name)
+    public PaintedStoneBlock(Material material, float hardness, String texture, String name)
     {
-        super(ID, material);
-        this.setHardness(hardness);
+        super(material);
+        //TODO setHardness()
+        this.func_149711_c(hardness);
         this.textureName = texture;
         this.localName = name;
-        this.setCreativeTab(PaintedStone.tab);
-        this.dropID = blockID;
+        //TODO setCreativeTab()
+        this.func_149647_a(PaintedStone.tab);
+        this.dropBlock = this;
     }
 
-    public PaintedStoneBlock(int ID, Material material, float hardness, String texture, String name, int dropID)
+    public PaintedStoneBlock(Material material, float hardness, String texture, String name, Block dropBlock)
     {
-        this(ID, material, hardness, texture, name);
-        this.dropID = dropID;
+        this(material, hardness, texture, name);
+        this.dropBlock = dropBlock;
     }
 
+    //TODO getUnlocalizedName()
     @Override
-    public String getUnlocalizedName ()
+    public String func_149739_a ()
     {
         return "tile." + localName;
     }
 
+    //TODO damageDropped
     @Override
-    public int damageDropped (int meta)
+    public int func_149692_a (int meta)
     {
         return meta;
     }
 
-    public int idDropped (int par1, Random par2Random, int par3)
+    public Block blockDropped (int par1, Random par2Random, int par3)
     {
-        return dropID;
+        return dropBlock;
     }
 
+    //TODO registerIcons
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void func_149651_a (IIconRegister iconRegister)
     {
-        this.icons = new Icon[colorNames.length];
+        this.icons = new IIcon[colorNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -66,19 +72,21 @@ public class PaintedStoneBlock extends Block
         }
     }
 
+    //TODO getIcon
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon func_149691_a (int side, int meta)
     {
         return meta < icons.length ? icons[meta] : icons[0];
     }
 
+    //TODO getSubBlocks
     @Override
-    public void getSubBlocks (int id, CreativeTabs tab, List list)
+    public void func_149666_a (Item b, CreativeTabs tab, List list)
     {
         for (int iter = 0; iter < icons.length; iter++)
         {
-            list.add(new ItemStack(id, 1, iter));
+            list.add(new ItemStack(b, 1, iter));
         }
     }
 }
