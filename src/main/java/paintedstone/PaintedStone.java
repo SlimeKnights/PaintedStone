@@ -142,7 +142,7 @@ public class PaintedStone
                     if (block == Blocks.stone)
                     {
                         changed = true;
-                        //TODO func_147465_d()
+                        //TODO setBlock()
                         world.func_147465_d(x + xPos, y + yPos, z + zPos, coloredStone, inputMeta, 3);
                     }
                     else if (block == Blocks.cobblestone)
