@@ -170,7 +170,7 @@ public class PaintedStone
                             world.func_147465_d(x + xPos, y + yPos, z + zPos, coloredStoneSquareBrick, inputMeta, 3);
 
                     }
-                    /*else if (TConstruct && blockID == TContent.multiBrickFancy.blockID)
+                    /*else if (TConstruct && block == TRepo.multiBrickFancy)
                     {
                         int meta = world.getBlockMetadata(x + xPos, y + yPos, z + zPos);
                         if (meta == 14)
