@@ -34,24 +34,24 @@ public class PaintedStone
         MinecraftForge.EVENT_BUS.register(this);
         TConstruct = Loader.isModLoaded("TConstruct");
         tab = new TabPaintedStone("paintedstone");
-        //TODO Material.field_151576_e                                                                  setName
-        coloredCobble = new PaintedStoneBlock(Material.field_151576_e, 2.0f, "stone_cobble", "stone.cobble").func_149663_c("paintedstone.cobble");
+        //TODO Material.rock                                                                  setName
+        coloredCobble = new PaintedStoneBlock(Material.rock, 2.0f, "stone_cobble", "stone.cobble").setBlockName("paintedstone.cobble");
         GameRegistry.registerBlock(coloredCobble, PaintedStoneItem.class, "paintedstone.cobble", "PaintedStone");
-        coloredStone = new PaintedStoneBlock( Material.field_151576_e, 1.5f, "stone_raw", "stone.raw", coloredCobble).func_149663_c("paintedstone.raw");
+        coloredStone = new PaintedStoneBlock( Material.rock, 1.5f, "stone_raw", "stone.raw", coloredCobble).setBlockName("paintedstone.raw");
         GameRegistry.registerBlock(coloredStone, PaintedStoneItem.class, "paintedstone.raw", "PaintedStone");
-        coloredMossCobble = new PaintedStoneBlock(Material.field_151576_e, 2.0f, "stone_mosscobble", "stone.mosscobble").func_149663_c("paintedstone.mosscobble");
+        coloredMossCobble = new PaintedStoneBlock(Material.rock, 2.0f, "stone_mosscobble", "stone.mosscobble").setBlockName("paintedstone.mosscobble");
         GameRegistry.registerBlock(coloredMossCobble, PaintedStoneItem.class, "paintedstone.mosscobble", "PaintedStone");
-        coloredStoneBrick = new PaintedStoneBlock(Material.field_151576_e, 1.5f, "stone_brick", "stone.brick").func_149663_c("paintedstone.brick");
+        coloredStoneBrick = new PaintedStoneBlock(Material.rock, 1.5f, "stone_brick", "stone.brick").setBlockName("paintedstone.brick");
         GameRegistry.registerBlock(coloredStoneBrick, PaintedStoneItem.class, "paintedstone.brick", "PaintedStone");
-        coloredMossStoneBrick = new PaintedStoneBlock(Material.field_151576_e, 1.5f, "stone_mossbrick", "stone.mossbrick").func_149663_c("paintedstone.mossbrick");
+        coloredMossStoneBrick = new PaintedStoneBlock(Material.rock, 1.5f, "stone_mossbrick", "stone.mossbrick").setBlockName("paintedstone.mossbrick");
         GameRegistry.registerBlock(coloredMossStoneBrick, PaintedStoneItem.class, "paintedstone.mossbrick", "PaintedStone");
-        coloredCrackedStoneBrick = new PaintedStoneBlock(Material.field_151576_e, 1.5f, "stone_crackedbrick", "stone.crackedbrick").func_149663_c("paintedstone.crackedbrick");
+        coloredCrackedStoneBrick = new PaintedStoneBlock(Material.rock, 1.5f, "stone_crackedbrick", "stone.crackedbrick").setBlockName("paintedstone.crackedbrick");
         GameRegistry.registerBlock(coloredCrackedStoneBrick, PaintedStoneItem.class, "paintedstone.crackedbrick", "PaintedStone");
-        coloredStoneRoad = new PaintedStoneBlock(Material.field_151576_e, 1.5f, "stone_road", "stone.road").func_149663_c("paintedstone.road");
+        coloredStoneRoad = new PaintedStoneBlock(Material.rock, 1.5f, "stone_road", "stone.road").setBlockName("paintedstone.road");
         GameRegistry.registerBlock(coloredStoneRoad, PaintedStoneItem.class, "paintedstone.road", "PaintedStone");
-        coloredStoneFancyBrick = new PaintedStoneBlock(Material.field_151576_e, 1.5f, "stone_fancy", "stone.fancy").func_149663_c("paintedstone.fancy");
+        coloredStoneFancyBrick = new PaintedStoneBlock(Material.rock, 1.5f, "stone_fancy", "stone.fancy").setBlockName("paintedstone.fancy");
         GameRegistry.registerBlock(coloredStoneFancyBrick, PaintedStoneItem.class, "paintedstone.fancy", "PaintedStone");
-        coloredStoneSquareBrick = new PaintedStoneBlock(Material.field_151576_e, 1.5f, "stone_square", "stone.chiseled").func_149663_c("paintedstone.chiseled");
+        coloredStoneSquareBrick = new PaintedStoneBlock(Material.rock, 1.5f, "stone_square", "stone.chiseled").setBlockName("paintedstone.chiseled");
         GameRegistry.registerBlock(coloredStoneSquareBrick, PaintedStoneItem.class, "paintedstone.chiseled", "PaintedStone");
 
         for (int i = 0; i < 16; i++)
@@ -116,7 +116,7 @@ public class PaintedStone
                                 Block block = Blocks.stone;
                                 //TODO stepSound.getPlaceSound(), stepSound.getVolume(), stepSound.getPitch()
                                 player.worldObj.playSoundEffect((double) ((float) event.x + 0.5F), (double) ((float) event.y + 0.5F), (double) ((float) event.z + 0.5F),
-                                        block.field_149762_H.func_150496_b(), (block.field_149762_H.func_150497_c() + 1.0F) / 2.0F, block.field_149762_H.func_150494_d() * 0.8F);
+                                        block.stepSound.func_150496_b(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
                             }
                         }
                         break;
@@ -138,22 +138,22 @@ public class PaintedStone
                 for (int zPos = -range; zPos <= range; zPos++)
                 {
                     //TODO getBlock()
-                    Block block = world.func_147439_a(x + xPos, y + yPos, z + zPos);
+                    Block block = world.getBlock(x + xPos, y + yPos, z + zPos);
                     if (block == Blocks.stone)
                     {
                         changed = true;
                         //TODO setBlock()
-                        world.func_147465_d(x + xPos, y + yPos, z + zPos, coloredStone, inputMeta, 3);
+                        world.setBlock(x + xPos, y + yPos, z + zPos, coloredStone, inputMeta, 3);
                     }
                     else if (block == Blocks.cobblestone)
                     {
                         changed = true;
-                        world.func_147465_d(x + xPos, y + yPos, z + zPos, coloredCobble, inputMeta, 3);
+                        world.setBlock(x + xPos, y + yPos, z + zPos, coloredCobble, inputMeta, 3);
                     }
                     else if (block == Blocks.mossy_cobblestone)
                     {
                         changed = true;
-                        world.func_147465_d(x + xPos, y + yPos, z + zPos, coloredMossCobble, inputMeta, 3);
+                        world.setBlock(x + xPos, y + yPos, z + zPos, coloredMossCobble, inputMeta, 3);
                     }
                     else if (block == Blocks.stonebrick)
                     {
@@ -161,13 +161,13 @@ public class PaintedStone
                         int meta = world.getBlockMetadata(x + xPos, y + yPos, z + zPos);
 
                         if (meta == 0)
-                            world.func_147465_d(x + xPos, y + yPos, z + zPos, coloredStoneBrick, inputMeta, 3);
+                            world.setBlock(x + xPos, y + yPos, z + zPos, coloredStoneBrick, inputMeta, 3);
                         else if (meta == 1)
-                            world.func_147465_d(x + xPos, y + yPos, z + zPos, coloredCrackedStoneBrick, inputMeta, 3);
+                            world.setBlock(x + xPos, y + yPos, z + zPos, coloredCrackedStoneBrick, inputMeta, 3);
                         else if (meta == 2)
-                            world.func_147465_d(x + xPos, y + yPos, z + zPos, coloredMossStoneBrick, inputMeta, 3);
+                            world.setBlock(x + xPos, y + yPos, z + zPos, coloredMossStoneBrick, inputMeta, 3);
                         else if (meta == 3)
-                            world.func_147465_d(x + xPos, y + yPos, z + zPos, coloredStoneSquareBrick, inputMeta, 3);
+                            world.setBlock(x + xPos, y + yPos, z + zPos, coloredStoneSquareBrick, inputMeta, 3);
 
                     }
                     /*else if (TConstruct && block == TRepo.multiBrickFancy)
@@ -176,12 +176,12 @@ public class PaintedStone
                         if (meta == 14)
                         {
                             changed = true;
-                            world.func_147465_d(x + xPos, y + yPos, z + zPos, coloredStoneFancyBrick.blockID, inputMeta, 3);
+                            world.setBlock(x + xPos, y + yPos, z + zPos, coloredStoneFancyBrick.blockID, inputMeta, 3);
                         }
                         else if (meta == 15)
                         {
                             changed = true;
-                            world.func_147465_d(x + xPos, y + yPos, z + zPos, coloredStoneRoad.blockID, inputMeta, 3);
+                            world.setBlock(x + xPos, y + yPos, z + zPos, coloredStoneRoad.blockID, inputMeta, 3);
                         }
                     }
                     //Road

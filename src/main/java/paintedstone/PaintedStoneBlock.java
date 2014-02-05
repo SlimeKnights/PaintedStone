@@ -26,11 +26,11 @@ public class PaintedStoneBlock extends Block
     {
         super(material);
         //TODO setHardness()
-        this.func_149711_c(hardness);
+        this.setHardness(hardness);
         this.textureName = texture;
         this.localName = name;
         //TODO setCreativeTab()
-        this.func_149647_a(PaintedStone.tab);
+        this.setCreativeTab(PaintedStone.tab);
         this.dropBlock = this;
     }
 
@@ -42,14 +42,14 @@ public class PaintedStoneBlock extends Block
 
     //TODO getUnlocalizedName()
     @Override
-    public String func_149739_a ()
+    public String getUnlocalizedName ()
     {
         return "tile." + localName;
     }
 
     //TODO damageDropped
     @Override
-    public int func_149692_a (int meta)
+    public int damageDropped (int meta)
     {
         return meta;
     }
@@ -62,7 +62,7 @@ public class PaintedStoneBlock extends Block
     //TODO registerIcons
     @Override
     @SideOnly(Side.CLIENT)
-    public void func_149651_a (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         this.icons = new IIcon[colorNames.length];
 
@@ -75,14 +75,14 @@ public class PaintedStoneBlock extends Block
     //TODO getIcon
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon func_149691_a (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         return meta < icons.length ? icons[meta] : icons[0];
     }
 
     //TODO getSubBlocks
     @Override
-    public void func_149666_a (Item b, CreativeTabs tab, List list)
+    public void getSubBlocks (Item b, CreativeTabs tab, List list)
     {
         for (int iter = 0; iter < icons.length; iter++)
         {
