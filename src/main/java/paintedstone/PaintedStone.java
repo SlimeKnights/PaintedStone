@@ -37,7 +37,7 @@ public class PaintedStone
         //TODO Material.rock                                                                  setName
         coloredCobble = new PaintedStoneBlock(Material.rock, 2.0f, "stone_cobble", "stone.cobble").setBlockName("paintedstone.cobble");
         GameRegistry.registerBlock(coloredCobble, PaintedStoneItem.class, "paintedstone.cobble", "PaintedStone");
-        coloredStone = new PaintedStoneBlock( Material.rock, 1.5f, "stone_raw", "stone.raw", coloredCobble).setBlockName("paintedstone.raw");
+        coloredStone = new PaintedStoneBlock(Material.rock, 1.5f, "stone_raw", "stone.raw", coloredCobble).setBlockName("paintedstone.raw");
         GameRegistry.registerBlock(coloredStone, PaintedStoneItem.class, "paintedstone.raw", "PaintedStone");
         coloredMossCobble = new PaintedStoneBlock(Material.rock, 2.0f, "stone_mosscobble", "stone.mosscobble").setBlockName("paintedstone.mosscobble");
         GameRegistry.registerBlock(coloredMossCobble, PaintedStoneItem.class, "paintedstone.mosscobble", "PaintedStone");
@@ -58,14 +58,14 @@ public class PaintedStone
         {
             //TODO addSmelting
             FurnaceRecipes.smelting().func_151393_a(coloredCobble, new ItemStack(coloredStone, 1, i), 0.2F);
-            GameRegistry.addRecipe(new ItemStack(coloredStoneBrick, 4, i),  "##", "##", '#', new ItemStack(coloredStone, 1, i));
+            GameRegistry.addRecipe(new ItemStack(coloredStoneBrick, 4, i), "##", "##", '#', new ItemStack(coloredStone, 1, i));
             int oreID = OreDictionary.getOreID("stone");
             OreDictionary.registerOre(oreID, new ItemStack(coloredStone, 1, i));
             oreID = OreDictionary.getOreID("cobblestone");
             OreDictionary.registerOre(oreID, new ItemStack(coloredCobble, 1, i));
         }
     }
-    
+
     @EventHandler
     public void init (FMLInitializationEvent event)
     {
@@ -81,9 +81,9 @@ public class PaintedStone
             }
         }*/
     }
-    
+
     public static final String[] dyeTypes = new String[] { "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red",
-    "black" };
+            "black" };
 
     @SubscribeEvent
     public void playerInteract (PlayerInteractEvent event)
