@@ -26,8 +26,8 @@ buildscript {
 
 repositories {
     maven {
-        name 'SlimeKnights Maven FS'
-        url 'http://aeon.sunstrike.io'
+        name 'DVS1 Maven FS'
+        url 'http://dvs1.progwml6.com/files/maven'
     }
     maven {
         name 'ForgeFS'
@@ -37,6 +37,7 @@ repositories {
 
 // Load ForgeGradle
 apply plugin: 'forge'
+group = 'paintedStone'
 
 // Define properties file
 ext.configFile = file "build.properties"
@@ -65,7 +66,7 @@ if (configFile2.exists()){
 }
 
 dependencies {
-    compile "mantle:Mantle:${config.mantle_version}:dev"
+    compile "mantle:Mantle:${config.minecraft_version}-${config.mantle_version}:deobf"
 }
 
 // Finds and sets version data
@@ -135,5 +136,21 @@ task deobfJar(type: Jar) {
 
 artifacts {
     archives deobfJar
+}
+
+task("uploadJars", dependsOn:"build") {
+    
+    description = "uploads JARs"
+
+    if (project.hasProperty("local_maven")) {
+	    apply plugin: 'maven'
+            uploadArchives {
+                repositories {
+                    mavenDeployer {
+                        repository(url: "file://${local_maven}")
+                }
+            }
+        }
+    }
 }
 

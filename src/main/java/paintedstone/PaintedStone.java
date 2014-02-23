@@ -30,7 +30,7 @@ public class PaintedStone
     @EventHandler
     public void preInit (FMLPreInitializationEvent event)
     {
-        PHPaint.initProps(event.getModConfigurationDirectory());
+        PHPaint.initProps(event.getSuggestedConfigurationFile());
         MinecraftForge.EVENT_BUS.register(this);
         TConstruct = Loader.isModLoaded("TConstruct");
         tab = new TabPaintedStone("paintedstone");
