@@ -7,7 +7,7 @@ import net.minecraftforge.common.config.Configuration;
 
 public class PHPaint
 {
-    public static void initProps (File location)
+    public static void initProps (File confFile)
     {
         /* Here we will set up the config file for the mod 
          * First: Create a folder inside the config folder
